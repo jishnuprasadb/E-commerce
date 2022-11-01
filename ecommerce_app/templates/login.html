@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <style>
+    
+    </style>
+  </head>
+  <body>   
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand " href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" style="width: 60%;"></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav m-auto">
+            <li class="nav-item">
+              <a class="nav-link link"  href="#">MEN</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link" href="#">WOMEN</a>
+            </li>    
+            <li class="nav-item">
+              <a class="nav-link link">KIDS</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width:20vw">
+            <button class="btn btn-outline-danger" type="submit">Search</button>
+          </form>
+          <ul class="navbar-nav me-2 mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link sign"  href="{% url 'signup_page' %}" >Signup</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link sign" href="{% url 'login_page' %}" >Login</a>
+            </li>    
+          </ul>
+          <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+            <div class="grp">
+            <li class="nav-item">
+              <a href=""><i class="bi bi-person-check-fill"></i></a>
+              <a class="nav-link profile"  href="#">PROFILE</a>
+            </li>
+            </div>
+            <div class="grp">
+            <li class="nav-item">
+              <a href=""><i class="bi bi-cart"></i></a>
+              <a class="nav-link cart"  href="#">CART</a>
+            </li>    
+            </div>
+          </ul>
+          
+        </div>
+      </div>
+    </nav>
+    <section>
+        <div class="container bg-light" style="border-radius: 10px; width:50%;margin-top: 5%;">
+        <form action="{% url 'login_' %}" method="post" class="form pt-5 pb-5" style="width: 50%; margin-left:25%">
+            {% csrf_token %}
+    
+            <input type="text" name="username" class="form-control" placeholder="USERNAME"><br>
+            <input type="password" name="password"class="form-control" placeholder="Password"><br>
+            <button type="submit" class="btn btn-outline-success" style="margin-left: 40%;">SIGN IN</button>
+            <br>
+            <p class='text-muted'>Not signup yet... <a href="">Signup</a></p>
+        </form>
+        </div>
+    
+  </body>
+</html>
+
