@@ -96,6 +96,7 @@
                 <div class="card-body">
                   <h4 class="card-title text-success">{{i.brand}}</h4>
                   <p class="card-text text-danger" style="font-weight:bold">MRP Rs:{{i.price}}</p>
+                  <a type="submit" href="{% url 'add_cart' i.id %}" style="background-color: darkred;color: white;">buy Now</a>
                 </div>
               </div>
             {% endfor %}

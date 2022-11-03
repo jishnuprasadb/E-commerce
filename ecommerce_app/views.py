@@ -112,7 +112,7 @@ def login_(request):
             else:
                 login(request,user)
                 auth.login(request,user) 
-                return redirect('login_home')   
+                return redirect('home')   
         
    
 def category_add(request):
@@ -135,10 +135,6 @@ def product_add(request):
         product.save()
         return redirect('admin_home')
 
-@login_required(login_url='login_page')
-def login_home(request):
-    product=Products.objects.all()
-    return render(request,'login_home.html',{'product':product})
 
 @login_required(login_url='login_page')
 def cart_page(request):
@@ -146,10 +142,16 @@ def cart_page(request):
     return render(request,'cart.html',{'cart':cart})   
 
 def add_cart(request,pk):
-    products=Products.objects.get(id=pk)
-    data=Cart(product=products,user=request.user)
-    data.save()
-    return redirect('cart_page')       
+    if request.user.is_authenticated and not request.user.is_staff:
+        products=Products.objects.get(id=pk)
+        if Cart.objects.filter(product=products).exists():
+            pass
+        else:
+            data=Cart(product=products,user=request.user)
+            data.save()    
+        return redirect('cart_page')    
+    else:
+        return redirect('login_page')        
 
 @login_required(login_url='login_page')
 def view_profile(request):
@@ -174,7 +176,8 @@ def edit(request):
 
 @login_required(login_url='login_page')
 def log_out(request):
-    auth.logout(request)
+    if request.user.is_authenticated:
+     auth.logout(request)
     return redirect('home')
 
 def delete_product(request,pk):

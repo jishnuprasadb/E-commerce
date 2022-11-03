@@ -18,7 +18,6 @@ urlpatterns=[
     path(' login_',views.login_,name='login_'),
     path('category_add',views.category_add,name='category_add'),
     path('product_add',views.product_add,name='product_add'),
-    path('login_home',views.login_home,name='login_home'),
     path('cart_page',views.cart_page,name='cart_page'),
     path('edit_profile',views.edit_profile,name='edit_profile'),
     path('view_profile',views.view_profile,name='view_profile'),
